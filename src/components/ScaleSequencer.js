@@ -1,9 +1,11 @@
 import React from 'react'
-import { Score } from './components/score/Score'
+import { NavBar } from './nav/NavBar'
+import { Score } from './score/Score'
 
 export const ScaleSequencer = () => {
   return (
     <>
+    <NavBar />
     <Score
       staves={[
         ['c4', 'd4', 'e4'],
