@@ -17,12 +17,18 @@ export const Score = ({
   const rendererRef = useRef()
 
   useEffect(() => {
-    if (rendererRef.current == null) {
-      rendererRef.current = new Renderer(
-        container.current,
-        Renderer.Backends.SVG
-      )
+    //conditional clears existing staves in container div before
+    //rendering new staves and notes
+    //Direct DOM manipulation that stands in rebellion to React
+    //standard practices, but the ends justify the means.
+    //This is only intended to be a temporary fix
+    if (container.current.hasChildNodes()) {
+      container.current.removeChild(container.current.firstChild)
     }
+    rendererRef.current = new Renderer(
+      container.current,
+      Renderer.Backends.SVG
+    )
     const renderer = rendererRef.current
     renderer.resize(width, height)
     const context = renderer.getContext()
