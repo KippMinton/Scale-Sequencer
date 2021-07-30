@@ -6,6 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
 
   const [users, setUsers] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const getUsers = () => {
     return fetch("http://localhost:8088/users")
@@ -14,7 +15,7 @@ export const UserProvider = (props) => {
   };
 
   const getUserById = (id) => {
-    return fetch(`http://localhost:8088/users/${id}?_expand=location&_expand=customer`)
+    return fetch(`http://localhost:8088/users/${id}`)
       .then(res => res.json()) // note we don't set anything on state here. Why?
   }
 
@@ -40,10 +41,14 @@ export const UserProvider = (props) => {
       .then(getUsers)
   }
 
+  const setLoggedInState = (bool) => {
+    setIsLoggedIn(bool)
+  }
+
 
   return (
     <UserContext.Provider value={{
-      users, getUsers, getUserById, addUser, updateUser
+      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setLoggedInState
     }}>
       {props.children}
     </UserContext.Provider>

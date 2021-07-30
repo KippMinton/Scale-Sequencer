@@ -37,12 +37,12 @@ export const Home = () => {
     let n2 = seq.num2
     let n3 = seq.num3
     if (n1 === 0 || n2 === 0 || n3 === 0) {
-      window.alert("select all numbers")
+      window.alert("Please, select all numbers.")
     } else if(n1 !== 1 && n2 !== 1 && n3 !== 1){
-      window.alert("at least one number must be 1")
+      window.alert("At least one number must be 1.")
     } else {
       let newNotes = [
-        [noteArray[n1], noteArray[n2], noteArray[n3]],
+        [noteArray[n1], noteArray[n2], noteArray[n3] ],
         [noteArray[n1+1], noteArray[n2+1], noteArray[n3+1]],
         [noteArray[n1+2], noteArray[n2+2], noteArray[n3+2]],
         [noteArray[n1+3], noteArray[n2+3], noteArray[n3+3]]
@@ -75,7 +75,7 @@ export const Home = () => {
         />
         </div>
         <form className="numbers">
-          <label for="number1">select scale degrees: </label>
+          <label htmlFor="number1">select scale degrees: </label>
           <input type="number" id="num1" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
           <input type="number" id="num2" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
           <input type="number" id="num3" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
