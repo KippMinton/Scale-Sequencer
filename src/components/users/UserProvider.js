@@ -5,8 +5,9 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
 
+  const currentUser = window.sessionStorage.getItem("sequence_user")
   const [users, setUsers] = useState([])
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(currentUser)
 
   const getUsers = () => {
     return fetch("http://localhost:8088/users")
@@ -41,14 +42,14 @@ export const UserProvider = (props) => {
       .then(getUsers)
   }
 
-  const setLoggedInState = (bool) => {
-    setIsLoggedIn(bool)
-  }
+  // const setLoggedInState = (bool) => {
+  //   setIsLoggedIn(bool)
+  // }
 
 
   return (
     <UserContext.Provider value={{
-      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setLoggedInState
+      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setIsLoggedIn
     }}>
       {props.children}
     </UserContext.Provider>

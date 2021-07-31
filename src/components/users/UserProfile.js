@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { UserContext } from "./UserProvider"
 import "./User.css"
-import { useParams } from "react-router-dom"
 
-export const UserDetail = () => {
-  const { getUserById } = useContext(UserContext)
+export const UserProfile = () => {
+
   const [user, setUser] = useState({})
-  const { userId } = useParams();
+  const { getUserById, isLoggedIn } = useContext(UserContext)
+  const userId = parseInt(isLoggedIn)
 
   useEffect(() => {
     console.log("useEffect", userId)
@@ -14,7 +14,7 @@ export const UserDetail = () => {
       .then((response) => {
         setUser(response)
       })
-  }, [])
+  },[])
 
   return (
     <>
@@ -28,3 +28,13 @@ export const UserDetail = () => {
     </>
   )
 }
+
+
+
+// const getFriends = () => {
+//   return fetch(`http://localhost:8088/currentUsers/${id}/friends?_expand=user`)
+//     .then((res) => res.json())
+//     .then(setFriends);
+// };
+
+// http://localhost:8088/TMDB/${TMDBId}/movies?_expand=friend

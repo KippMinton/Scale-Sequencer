@@ -6,13 +6,12 @@ import "./NavBar.css"
 
 export const NavBar = (props) => {
   
-  const { setLoggedInState, isLoggedIn } = useContext(UserContext)
-
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
   const history = useHistory()
-  
+
   const Logout = () => {
     window.sessionStorage.clear()
-    setLoggedInState(false)
+    setIsLoggedIn(null)
     history.push("/")
   }
 
@@ -21,20 +20,26 @@ export const NavBar = (props) => {
       <li className="navbar__item active">
         <Link className="navbar__link" to="/">Sequencer</Link>
       </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/profile">Profile</Link>
-      </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/users">Users</Link>
-      </li>
       
       {!isLoggedIn ?
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/login">sign in</Link>
-      </li> :
-      <li className="navbar__item">
-        <Link className="navbar__link" onClick={Logout} to="/">sign out</Link>
-      </li>}
+      <>
+        <li className="navbar__item"><div></div></li>
+        <li className="navbar__item"><div></div></li>
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/login">sign in</Link>
+        </li> 
+      </>: 
+      <>
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/profile">Profile</Link>
+        </li>
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/users">Users</Link>
+        </li>
+        <li className="navbar__item">
+          <Link className="navbar__link" onClick={Logout} to="/">sign out</Link>
+        </li>
+      </>}
     </ul>
   )
 }

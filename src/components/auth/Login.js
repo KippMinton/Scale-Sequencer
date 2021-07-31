@@ -7,7 +7,7 @@ import "./Login.css"
 export const Login = () => {
   const [loginUser, setLoginUser] = useState({ email: "" })
   const [existDialog, setExistDialog] = useState(false)
-  const { setLoggedInState } = useContext(UserContext)
+  const { setIsLoggedIn } = useContext(UserContext)
 
   const history = useHistory()
 
@@ -33,7 +33,7 @@ export const Login = () => {
         if (exists) {
           // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
           sessionStorage.setItem("sequence_user", exists.id)
-          setLoggedInState(true)
+          setIsLoggedIn(sessionStorage.getItem("sequence_user"))
           history.push("/")
         } else {
           setExistDialog(true)
