@@ -13,23 +13,23 @@ export const ApplicationViews = () => {
   return (
     <>
       {/* Render the location list when http://localhost:3000/ */}
-      <Route exact path="/">
-        <Home />
-      </Route>
-
       <SequenceProvider>
+        <Route exact path="/">
+          <Home />
+        </Route>
+
         <Route path="/profile">
           <UserProfile />
         </Route>
-      </SequenceProvider>
       
-      <Route exact path="/users">
-        <UserList />
-      </Route>
+        <Route exact path="/users">
+          <UserList />
+        </Route>
 
-      <Route exact path="/users/detail/:userId(\d+)">
-        <UserDetail />
-      </Route>
+        <Route exact path="/users/detail/:userId(\d+)">
+          <UserDetail />
+        </Route>
+      </SequenceProvider>
 
       <Route path="/login">
         <Login />
