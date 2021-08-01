@@ -17,7 +17,7 @@ export const UserProvider = (props) => {
 
   const getUserById = (id) => {
     return fetch(`http://localhost:8088/users/${id}`)
-      .then(res => res.json()) // note we don't set anything on state here. Why?
+      .then(res => res.json())
   }
 
   const addUser = userObj => {
@@ -41,11 +41,6 @@ export const UserProvider = (props) => {
     })
       .then(getUsers)
   }
-
-  // const setLoggedInState = (bool) => {
-  //   setIsLoggedIn(bool)
-  // }
-
 
   return (
     <UserContext.Provider value={{

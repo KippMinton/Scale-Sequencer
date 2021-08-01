@@ -6,6 +6,7 @@ import { UserList } from './users/UserList'
 import { UserDetail } from './users/UserDetail'
 import { Login } from './auth/Login'
 import { Register } from './auth/Register'
+import { SequenceProvider } from './sequence/SequenceProvider'
 
 
 export const ApplicationViews = () => {
@@ -16,10 +17,12 @@ export const ApplicationViews = () => {
         <Home />
       </Route>
 
-      <Route path="/profile">
-        <UserProfile />
-      </Route>
-
+      <SequenceProvider>
+        <Route path="/profile">
+          <UserProfile />
+        </Route>
+      </SequenceProvider>
+      
       <Route exact path="/users">
         <UserList />
       </Route>
