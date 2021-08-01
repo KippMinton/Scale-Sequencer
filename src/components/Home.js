@@ -1,8 +1,10 @@
-import React, { useState }from 'react'
+import React, { useState, useContext }from 'react'
 import { Score } from './score/Score'
+import { UserContext } from "./users/UserProvider"
 
-export const Home = () => {
-
+export const Home = (props) => {
+  const { isLoggedIn } = useContext(UserContext)
+  
   const noteArray = ['b3','c4', 'd4', 'e4', 'f4', 'g4', 'a4', 'b4', 'c5', 'd5', 'e5', 'f5', 'g5', 'a5', 'b5', 'c6']
 
   const [seq, setSeq] = useState({
@@ -81,9 +83,16 @@ export const Home = () => {
           <input type="number" id="num3" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
         </form>
         <div className="buttons">
-          <button className="btn">Randomize Numbers</button>
+          {/* <button className="btn">Randomize Numbers</button> */}
           <button className="btn" onClick={generateNotes}>Generate Notes</button>
-          <button className="btn">Save Sequence</button>
+          {isLoggedIn ? 
+            <>
+              <button className="btn">Save Sequence</button>
+            </> :
+            <>
+              <div></div>
+            </>
+          }
         </div>
       </section>
     </>

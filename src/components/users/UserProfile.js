@@ -32,8 +32,6 @@ export const UserProfile = () => {
       <section className="user">
 
         <h3 className="user__name">{user.username}</h3>
-        <div className="name">{user.name}</div>
-        <div className="user__email">Email: {user.email}</div>
 
       </section>
       <section className="user__Sequences">
