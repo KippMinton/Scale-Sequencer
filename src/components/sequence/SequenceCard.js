@@ -10,10 +10,11 @@ export const SequenceCard = ({ sequence }) =>{
 
   const userId = parseInt(isLoggedIn)
 
-  const handleDeleteSequence = (id) => {
-    console.log("sequence id is " + id)
+  const handleDeleteSequence = (event) => {
+    event.preventDefault()
+    console.log("sequence id is " + sequence.id)
     console.log(userId)
-    deleteSequence(id)
+    deleteSequence(sequence.id)
     .then(getUserSequences(userId))
   }
   
@@ -27,7 +28,7 @@ export const SequenceCard = ({ sequence }) =>{
       <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
       <div className="buttons">
         <button >Edit</button>
-        <button onClick={() => {handleDeleteSequence(sequence.id)}}>Delete</button>
+        <button onClick={handleDeleteSequence}>Delete</button>
       </div>
     </section>
 )

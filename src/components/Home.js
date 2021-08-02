@@ -74,11 +74,13 @@ export const Home = (props) => {
       userId: userId,
       saveDate: Date.now(),
       tempo: null,
-      instrumentId: null,
-      practiceNotes: null
+      instrumentId: 0,
+      practiceNotes: null,
+      isFavorite: false
     }
     addSequence(newSeqObj)
-    .then(console.log(newSeqObj))
+    .then(window.alert("Sequence added to your profile!"))
+    .then(console.log("New sequence added " + newSeqObj))
   }
 
   const handleClickSaveSequence = (event) => {
