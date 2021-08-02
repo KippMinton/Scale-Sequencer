@@ -1,18 +1,23 @@
 import React, { useContext }from "react"
-import { SequenceContext } from "../sequence/SequenceProvider"
+import { useHistory } from "react-router-dom"
+import { SequenceContext } from "./SequenceProvider"
 import { UserContext } from "../users/UserProvider"
+import { InstrumentContext } from "../instruments/InstrumentProvider"
 import "./Sequence.css"
 
 export const SequenceCard = ({ sequence }) =>{ 
 
   const { isLoggedIn } = useContext(UserContext)
   const { deleteSequence, getUserSequences } = useContext(SequenceContext)
+  const { instruments, getInstruments } = useContext(InstrumentContext)
+
+  const history = useHistory()
 
   const userId = parseInt(isLoggedIn)
 
   const handleDeleteSequence = (event) => {
     event.preventDefault()
-    console.log("sequence id is " + sequence.id)
+    console.log("deleting user " + userId + "'s sequence id " + sequence.id)
     console.log(userId)
     deleteSequence(sequence.id)
     .then(getUserSequences(userId))
@@ -21,14 +26,17 @@ export const SequenceCard = ({ sequence }) =>{
   return (
     <section className="sequence">
       <h3 className="sequence__header">
-          {sequence.number1}, {sequence.number2}, {sequence.number3}
+          {sequence.num1}, {sequence.num2}, {sequence.num3}
       </h3>
       <div className="sequence__date">{sequence.saveDate}</div>
       <div className="sequence__instrument">Instrument: {sequence.instrumentId}</div>
       <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
+      <div className="practice__notes">Practice Notes: {sequence.practiceNotes}</div>
       <div className="buttons">
-        <button >Edit</button>
-        <button onClick={handleDeleteSequence}>Delete</button>
+        <button className="sequence-btn" onClick={() => {
+          history.push(`/sequences/edit/${sequence.id}`)
+        }}>Edit Sequence</button>
+        <button className="sequence-btn" onClick={handleDeleteSequence}>Delete</button>
       </div>
     </section>
 )

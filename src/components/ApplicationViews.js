@@ -6,38 +6,46 @@ import { UserList } from './users/UserList'
 import { UserDetail } from './users/UserDetail'
 import { Login } from './auth/Login'
 import { Register } from './auth/Register'
-import { SequenceProvider } from './sequence/SequenceProvider'
-
+import { SequenceProvider } from './sequences/SequenceProvider'
+import { SequenceForm } from './sequences/SequenceForm'
+import { InstrumentProvider } from './instruments/InstrumentProvider'
 
 export const ApplicationViews = () => {
   return (
     <>
-      {/* Render the location list when http://localhost:3000/ */}
-      <SequenceProvider>
-        <Route exact path="/">
-          <Home />
-        </Route>
+      <InstrumentProvider>
+        <SequenceProvider>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-        <Route path="/profile">
-          <UserProfile />
-        </Route>
-      
-        <Route exact path="/users">
-          <UserList />
-        </Route>
+          <Route path="/profile">
+            <UserProfile />
+          </Route>
 
-        <Route exact path="/users/detail/:userId(\d+)">
-          <UserDetail />
-        </Route>
-      </SequenceProvider>
+          <Route exact path="/sequences/edit/:sequenceId(\d+)">
+            <SequenceForm />
+          </Route>
+        
+          <Route exact path="/users">
+            <UserList />
+          </Route>
+
+          <Route exact path="/users/detail/:userId(\d+)">
+            <UserDetail />
+          </Route>
+        </SequenceProvider>
+      </InstrumentProvider>
 
       <Route path="/login">
         <Login />
       </Route>
 
-      <Route path="/register">
-        <Register />
-      </Route>
+      <InstrumentProvider>
+        <Route path="/register">
+          <Register />
+        </Route>
+      </InstrumentProvider>
 
     </>
   )

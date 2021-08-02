@@ -1,7 +1,7 @@
 import React, { useState, useContext }from 'react'
 import { Score } from './score/Score'
 import { UserContext } from "./users/UserProvider"
-import { SequenceContext } from "./sequence/SequenceProvider"
+import { SequenceContext } from "./sequences/SequenceProvider"
 
 export const Home = (props) => {
   const { isLoggedIn } = useContext(UserContext)
@@ -68,12 +68,12 @@ export const Home = (props) => {
   const saveNewSequence = () => {
     const userId = parseInt(isLoggedIn)
     const newSeqObj = {
-      number1: n1,
-      number2: n2,
-      number3: n3,
+      num1: n1,
+      num2: n2,
+      num3: n3,
       userId: userId,
       saveDate: Date.now(),
-      tempo: null,
+      tempo: 40,
       instrumentId: 0,
       practiceNotes: null,
       isFavorite: false

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import { UserContext } from "./UserProvider"
 import "./User.css"
-import { SequenceContext } from "../sequence/SequenceProvider"
-import { SequenceCard } from "../sequence/SequenceCard"
+import { SequenceContext } from "../sequences/SequenceProvider"
+import { SequenceCard } from "../sequences/SequenceCard"
 
 export const UserProfile = () => {
 

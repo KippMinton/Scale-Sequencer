@@ -28,7 +28,7 @@ export const SequenceProvider = (props) => {
     })
   }
 
-  const updateSequence = sequence => {
+  const editSequence = sequence => {
     return fetch(`http://localhost:8088/sequences/${sequence.id}`, {
       method: "PUT",
       headers: {
@@ -54,7 +54,7 @@ export const SequenceProvider = (props) => {
 
   return (
     <SequenceContext.Provider value={{
-      sequences, getSequences, getSequenceById, addSequence, updateSequence, getUserSequences, deleteSequence
+      sequences, getSequences, getSequenceById, addSequence, editSequence, getUserSequences, deleteSequence
     }}>
       {props.children}
     </SequenceContext.Provider>
