@@ -24,7 +24,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     getUserSequences(userId)
-    .then(console.log("sequences set to " +sequences))
+    .then(console.log("sequences set to " + sequences))
   },[])
 
   return (
@@ -36,7 +36,7 @@ export const UserProfile = () => {
       </section>
       <section className="user__Sequences">
         <h3>Sequences</h3>
-        <div className="user__sequence">
+        <div className="user__sequences">
           {
             sequences.map(sequence => {
               return <SequenceCard key={sequence.id} sequence={sequence} />

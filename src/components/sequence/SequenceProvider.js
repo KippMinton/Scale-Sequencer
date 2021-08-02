@@ -26,7 +26,6 @@ export const SequenceProvider = (props) => {
       },
       body: JSON.stringify(sequenceObj)
     })
-      .then(getSequences)
   }
 
   const updateSequence = sequence => {
@@ -46,9 +45,16 @@ export const SequenceProvider = (props) => {
     .then(setSequences)
   }
 
+  const deleteSequence = (sequenceId) => {
+    return fetch(`http://localhost:8088/sequences/${sequenceId}`, {
+      method: "DELETE"
+    })
+      // .then(getUserSequences)
+  }
+
   return (
     <SequenceContext.Provider value={{
-      sequences, getSequences, getSequenceById, addSequence, updateSequence, getUserSequences
+      sequences, getSequences, getSequenceById, addSequence, updateSequence, getUserSequences, deleteSequence
     }}>
       {props.children}
     </SequenceContext.Provider>

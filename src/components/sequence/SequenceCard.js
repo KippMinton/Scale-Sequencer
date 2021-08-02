@@ -1,7 +1,22 @@
-import React from "react"
+import React, { useContext }from "react"
+import { SequenceContext } from "../sequence/SequenceProvider"
+import { UserContext } from "../users/UserProvider"
 import "./Sequence.css"
 
 export const SequenceCard = ({ sequence }) =>{ 
+
+  const { isLoggedIn } = useContext(UserContext)
+  const { deleteSequence, getUserSequences } = useContext(SequenceContext)
+
+  const userId = parseInt(isLoggedIn)
+
+  const handleDeleteSequence = (id) => {
+    console.log("sequence id is " + id)
+    console.log(userId)
+    deleteSequence(id)
+    .then(getUserSequences(userId))
+  }
+  
   return (
     <section className="sequence">
       <h3 className="sequence__header">
@@ -12,7 +27,7 @@ export const SequenceCard = ({ sequence }) =>{
       <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
       <div className="buttons">
         <button >Edit</button>
-        <button >Delete</button>
+        <button onClick={() => {handleDeleteSequence(sequence.id)}}>Delete</button>
       </div>
     </section>
 )
