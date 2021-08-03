@@ -13,7 +13,7 @@ export const UserProfile = () => {
   
   const { getUserSequences, sequences } = useContext(SequenceContext)
 
-  // const { getInstruments, instruments } = useContext(InstrumentContext)
+  const { getInstruments, instruments } = useContext(InstrumentContext)
 
 
   useEffect(() => {
@@ -30,9 +30,9 @@ export const UserProfile = () => {
     .then(console.log("sequences set to " + sequences))
   },[])
 
-  // useEffect(() => {
-  //   getInstruments()
-  // })
+  useEffect(() => {
+    getInstruments()
+  },[])
 
   return (
     <>

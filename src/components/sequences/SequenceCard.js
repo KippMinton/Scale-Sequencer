@@ -1,4 +1,4 @@
-import React, { useContext }from "react"
+import React, { useContext, useEffect, useState }from "react"
 import { useHistory } from "react-router-dom"
 import { SequenceContext } from "./SequenceProvider"
 import "./Sequence.css"
@@ -9,13 +9,18 @@ export const SequenceCard = ({ sequence }) =>{
 
   const { isLoggedIn } = useContext(UserContext)
   const { deleteSequence, getUserSequences } = useContext(SequenceContext)
-  const { instruments } = useContext(InstrumentContext)
+
+  const { instruments, getInstruments } = useContext(InstrumentContext)
 
   const history = useHistory()
 
   const userId = parseInt(isLoggedIn)
 
   const iId = sequence.instrumentId
+
+  useEffect(() => {
+    getInstruments()
+  }, [])
 
   const handleDeleteSequence = (event) => {
     event.preventDefault()

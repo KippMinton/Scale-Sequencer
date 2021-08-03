@@ -22,7 +22,7 @@ export const SequenceForm = () => {
   let n2 = parseInt(seq.num2)
   let n3 = parseInt(seq.num3)
 
-  const { instruments, getInstruments, getInstrumentById } = useContext(InstrumentContext)
+  const { instruments, getInstruments } = useContext(InstrumentContext)
 
 
   const history = useHistory()
@@ -39,7 +39,7 @@ export const SequenceForm = () => {
 
   useEffect(() => {
     getInstruments()
-  })
+  },[])
 
   //when a field changes, update state. The return will re-render and display based on the values in state
   //Controlled component
