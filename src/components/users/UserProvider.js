@@ -8,6 +8,7 @@ export const UserProvider = (props) => {
   const currentUser = window.sessionStorage.getItem("sequence_user")
   const [users, setUsers] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(currentUser)
+  const [userObj, setUserObj] = useState({})
 
   const getUsers = () => {
     return fetch("http://localhost:8088/users")
@@ -44,7 +45,7 @@ export const UserProvider = (props) => {
 
   return (
     <UserContext.Provider value={{
-      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setIsLoggedIn
+      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setIsLoggedIn, userObj, setUserObj
     }}>
       {props.children}
     </UserContext.Provider>

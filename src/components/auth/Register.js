@@ -1,14 +1,24 @@
-import React, { useRef } from "react"
+import React, { useRef, useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import "./Login.css"
+import { InstrumentContext } from "../instruments/InstrumentProvider"
+
 
 export const Register = (props) => {
     const firstName = useRef()
     const userName = useRef()
     const email = useRef()
+    const instrumentId = useRef()
     const verifyPassword = useRef()
     const conflictDialog = useRef()
     const history = useHistory()
+
+    const { instruments, getInstruments } = useContext(InstrumentContext)
+
+    useEffect(() => {
+      getInstruments()
+    }, [])
+
 
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/users?email=${email.current.value}`)
@@ -31,7 +41,8 @@ export const Register = (props) => {
                         body: JSON.stringify({
                             email: email.current.value,
                             name: `${firstName.current.value}`, 
-                            username: `${userName.current.value}`
+                            username: `${userName.current.value}`,
+                            instrumentId: `${instrumentId.current.value}`
                         })
                     })
                         .then(res => res.json())
@@ -72,7 +83,23 @@ export const Register = (props) => {
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Sign in </button>
+            <label htmlFor="instrument">Choose an instrument: </label>
+            <select
+              ref={instrumentId}
+              name="instrument"
+              id="instrumentId"
+              className="form-control"
+            >
+              <option value='0'>Select an instrument</option>
+              {instruments.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </select>
+                </fieldset>
+                <fieldset>
+                    <button type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

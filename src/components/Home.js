@@ -1,11 +1,21 @@
-import React, { useState, useContext }from 'react'
+import React, { useState, useContext, useEffect }from 'react'
 import { Score } from './score/Score'
 import { UserContext } from "./users/UserProvider"
 import { SequenceContext } from "./sequences/SequenceProvider"
 
 export const Home = (props) => {
-  const { isLoggedIn } = useContext(UserContext)
+  const { isLoggedIn, getUserById } = useContext(UserContext)
+  const  [userObj, setUserObj] = useState({})
+  const userId = parseInt(isLoggedIn)
+
+  useEffect(() => {
+    getUserById(userId)
+    .then(setUserObj)
+  },[])
+
   const { addSequence } = useContext(SequenceContext)
+
+  
   
   const noteArray = ['b3','c4', 'd4', 'e4', 'f4', 'g4', 'a4', 'b4', 'c5', 'd5', 'e5', 'f5', 'g5', 'a5', 'b5', 'c6']
   
@@ -66,7 +76,7 @@ export const Home = (props) => {
     }
 
   const saveNewSequence = () => {
-    const userId = parseInt(isLoggedIn)
+    const instId = userObj.instrumentId
     const newSeqObj = {
       num1: n1,
       num2: n2,
@@ -74,7 +84,7 @@ export const Home = (props) => {
       userId: userId,
       saveDate: new Date(Date.now()).toLocaleString().split(',')[0],
       tempo: 40,
-      instrumentId: 0,
+      instrumentId: instId,
       practiceNotes: "Practice, practice, practice...",
       isFavorite: false
     }
