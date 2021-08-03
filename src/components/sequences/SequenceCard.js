@@ -1,19 +1,21 @@
 import React, { useContext }from "react"
 import { useHistory } from "react-router-dom"
 import { SequenceContext } from "./SequenceProvider"
+import "./Sequence.css"
 import { UserContext } from "../users/UserProvider"
 import { InstrumentContext } from "../instruments/InstrumentProvider"
-import "./Sequence.css"
 
 export const SequenceCard = ({ sequence }) =>{ 
 
   const { isLoggedIn } = useContext(UserContext)
   const { deleteSequence, getUserSequences } = useContext(SequenceContext)
-  const { instruments, getInstruments } = useContext(InstrumentContext)
+  const { instruments } = useContext(InstrumentContext)
 
   const history = useHistory()
 
   const userId = parseInt(isLoggedIn)
+
+  const iId = sequence.instrumentId
 
   const handleDeleteSequence = (event) => {
     event.preventDefault()
@@ -29,7 +31,7 @@ export const SequenceCard = ({ sequence }) =>{
           {sequence.num1}, {sequence.num2}, {sequence.num3}
       </h3>
       <div className="sequence__date">{sequence.saveDate}</div>
-      <div className="sequence__instrument">Instrument: {sequence.instrumentId}</div>
+      <div className="sequence__instrument">Instrument: {instruments[iId].name}</div>
       <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
       <div className="practice__notes">Practice Notes: {sequence.practiceNotes}</div>
 

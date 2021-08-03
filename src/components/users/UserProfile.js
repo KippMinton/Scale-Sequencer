@@ -3,15 +3,18 @@ import { UserContext } from "./UserProvider"
 import "./User.css"
 import { SequenceContext } from "../sequences/SequenceProvider"
 import { SequenceCard } from "../sequences/SequenceCard"
+import { InstrumentContext } from "../instruments/InstrumentProvider"
 
 export const UserProfile = () => {
 
   const [user, setUser] = useState({})
   const { getUserById, isLoggedIn } = useContext(UserContext)
+  const userId = parseInt(isLoggedIn)
   
   const { getUserSequences, sequences } = useContext(SequenceContext)
 
-  const userId = parseInt(isLoggedIn)
+  // const { getInstruments, instruments } = useContext(InstrumentContext)
+
 
   useEffect(() => {
     console.log("useEffect", userId)
@@ -26,6 +29,10 @@ export const UserProfile = () => {
     getUserSequences(userId)
     .then(console.log("sequences set to " + sequences))
   },[])
+
+  // useEffect(() => {
+  //   getInstruments()
+  // })
 
   return (
     <>
@@ -47,19 +54,3 @@ export const UserProfile = () => {
     </>
   )
 }
-
-
-
-// const getFriends = () => {
-//   return fetch(`http://localhost:8088/currentUsers/${id}/friends?_expand=user`)
-//     .then((res) => res.json())
-//     .then(setFriends);
-// };
-
-// http://localhost:8088/TMDB/${TMDBId}/movies?_expand=friend
-
-
-// useEffect(() => {
-//   getSequences()
-//     .then(console.log("sequences set to " + sequences))
-// }, [])

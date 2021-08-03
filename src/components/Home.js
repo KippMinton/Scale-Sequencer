@@ -72,7 +72,7 @@ export const Home = (props) => {
       num2: n2,
       num3: n3,
       userId: userId,
-      saveDate: Date.now(),
+      saveDate: new Date(Date.now()).toLocaleString().split(',')[0],
       tempo: 40,
       instrumentId: 0,
       practiceNotes: "Practice, practice, practice...",

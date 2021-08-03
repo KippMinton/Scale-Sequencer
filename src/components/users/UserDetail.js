@@ -1,16 +1,23 @@
 import React, { useContext, useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import { UserContext } from "./UserProvider"
 import "./User.css"
-import { useParams } from "react-router-dom"
 import { SequenceContext } from "../sequences/SequenceProvider"
 import "../sequences/Sequence.css"
+import { InstrumentContext } from "../instruments/InstrumentProvider"
+
 
 export const UserDetail = () => {
+  
   const { getUserById } = useContext(UserContext)
   const [user, setUser] = useState({})
   const { userId } = useParams();
 
   const { getUserSequences, sequences } = useContext(SequenceContext)
+
+  const { instruments } = useContext(InstrumentContext)
+
+  
 
   useEffect(() => {
     console.log("useEffect", userId)
@@ -39,6 +46,7 @@ export const UserDetail = () => {
         <div className="user__sequences">
           {
             sequences.map(sequence => {
+              const iId = sequence.instrumentId
               return (
                 <>
                   <section className="sequence">
@@ -46,7 +54,7 @@ export const UserDetail = () => {
                     {sequence.num1}, {sequence.num2}, {sequence.num3}
                     </h3>
                     <div className="sequence__date">{sequence.saveDate}</div>
-                    <div className="sequence__instrument">Instrument: {sequence.instrumentId}</div>
+                    <div className="sequence__instrument">Instrument: {instruments[iId].name}</div>
                     <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
                     <div className="practice__notes">Practice Notes: {sequence.practiceNotes}</div>
                   </section>
