@@ -71,6 +71,8 @@ export const SequenceForm = () => {
     event.preventDefault() 
     if (n1 !== 1 && n2 !== 1 && n3 !== 1) {
       window.alert("At least one number must be 1.")
+    } else if (n1 === n2 || n2 === n3) {
+      window.alert("Neighboring numbers must be different.")
     } else {
       saveEditSequence()
     }

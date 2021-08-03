@@ -55,6 +55,8 @@ export const Home = (props) => {
       window.alert("Please, select all numbers.")
     } else if(n1 !== 1 && n2 !== 1 && n3 !== 1){
       window.alert("At least one number must be 1.")
+    } else if (n1 === n2 || n2 === n3){
+      window.alert("Neighboring numbers must be different.")
     } else {
       let newNotes = [
         [noteArray[n1], noteArray[n2], noteArray[n3] ],
