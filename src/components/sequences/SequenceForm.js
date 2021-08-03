@@ -68,8 +68,12 @@ export const SequenceForm = () => {
 
 
   const handleSaveSequence = (event) => {
-    event.preventDefault() //Prevents the browser from submitting the form
+    event.preventDefault() 
+    if (n1 !== 1 && n2 !== 1 && n3 !== 1) {
+      window.alert("At least one number must be 1.")
+    } else {
       saveEditSequence()
+    }
   }
 
   return (

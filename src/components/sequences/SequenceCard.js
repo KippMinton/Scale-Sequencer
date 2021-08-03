@@ -32,11 +32,12 @@ export const SequenceCard = ({ sequence }) =>{
       <div className="sequence__instrument">Instrument: {sequence.instrumentId}</div>
       <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
       <div className="practice__notes">Practice Notes: {sequence.practiceNotes}</div>
+
       <div className="buttons">
-        <button className="sequence-btn" onClick={() => {
-          history.push(`/sequences/edit/${sequence.id}`)
-        }}>Edit Sequence</button>
-        <button className="sequence-btn" onClick={handleDeleteSequence}>Delete</button>
+          <button className="sequence-btn" onClick={() => {
+            history.push(`/sequences/edit/${sequence.id}`)
+          }}>Edit Sequence</button>
+          <button className="sequence-btn" onClick={handleDeleteSequence}>Delete</button>
       </div>
     </section>
 )

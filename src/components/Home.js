@@ -75,7 +75,7 @@ export const Home = (props) => {
       saveDate: Date.now(),
       tempo: 40,
       instrumentId: 0,
-      practiceNotes: null,
+      practiceNotes: "Practice, practice, practice...",
       isFavorite: false
     }
     addSequence(newSeqObj)
@@ -113,7 +113,6 @@ export const Home = (props) => {
           <input type="number" id="num3" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
         </form>
         <div className="buttons">
-          {/* <button className="btn">Randomize Numbers</button> */}
           <button className="btn" onClick={generateNotes}>Generate Notes</button>
           {isLoggedIn ? 
             <>
