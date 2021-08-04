@@ -58,8 +58,8 @@ export const SequenceForm = () => {
       num3: n3,
       userId: userId,
       saveDate: seq.saveDate,
-      tempo: seq.tempo,
-      instrumentId: seq.instrumentId,
+      tempo: parseInt(seq.tempo),
+      instrumentId: parseInt(seq.instrumentId),
       practiceNotes: seq.practiceNotes,
       isFavorite: seq.isFavorite
     })

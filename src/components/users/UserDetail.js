@@ -49,7 +49,7 @@ export const UserDetail = () => {
               const iId = sequence.instrumentId
               return (
                 <>
-                  <section className="sequence">
+                  <section className="sequence" key={sequence.id}>
                     <h3 className="sequence__header">
                     {sequence.num1}, {sequence.num2}, {sequence.num3}
                     </h3>

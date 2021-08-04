@@ -10,7 +10,8 @@ export const SequenceCard = ({ sequence }) =>{
   const { isLoggedIn } = useContext(UserContext)
   const { deleteSequence, getUserSequences } = useContext(SequenceContext)
 
-  const { instruments, getInstruments } = useContext(InstrumentContext)
+  const { getInstruments, instruments } = useContext(InstrumentContext)
+  // const [instruments, setInstruments] = useState()
 
   const history = useHistory()
 

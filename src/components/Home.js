@@ -9,8 +9,9 @@ export const Home = (props) => {
   const userId = parseInt(isLoggedIn)
 
   useEffect(() => {
+    if(isLoggedIn){
     getUserById(userId)
-    .then(setUserObj)
+    .then(setUserObj)}
   },[])
 
   const { addSequence } = useContext(SequenceContext)
@@ -150,15 +151,15 @@ export const Home = (props) => {
           </p>
           <p>
             To use the sequence generator, simply select the numbers that build the sequence you wish to practice.  Click generate notes to see the notes rendered to the staff.  Register a profile to save your sequences and see other users’ sequences, as well.  To get started, try these common 3 note sequences:
-            <ul>
-              <li>1, 2, 3</li>
-              <li>3, 2, 1</li>
-              <li>1, 3, 2</li>
-              <li>1, 3, 5</li>
-              <li>5, 3, 1</li>
-              <li>1, 5, 3</li>
-            </ul>
           </p>
+          <ul>
+            <li>1, 2, 3</li>
+            <li>3, 2, 1</li>
+            <li>1, 3, 2</li>
+            <li>1, 3, 5</li>
+            <li>5, 3, 1</li>
+            <li>1, 5, 3</li>
+          </ul>
         </div>
       </section>
     </>

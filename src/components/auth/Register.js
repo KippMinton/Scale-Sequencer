@@ -2,7 +2,7 @@ import React, { useRef, useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import "./Login.css"
 import { InstrumentContext } from "../instruments/InstrumentProvider"
-
+import { UserContext } from "../users/UserProvider"
 
 export const Register = (props) => {
     const firstName = useRef()
@@ -14,6 +14,8 @@ export const Register = (props) => {
     const history = useHistory()
 
     const { instruments, getInstruments } = useContext(InstrumentContext)
+
+    const { setIsLoggedIn } = useContext(UserContext)
 
     useEffect(() => {
       getInstruments()
@@ -39,18 +41,19 @@ export const Register = (props) => {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            email: email.current.value,
-                            name: `${firstName.current.value}`, 
-                            username: `${userName.current.value}`,
-                            instrumentId: `${instrumentId.current.value}`
+                          email: email.current.value,
+                          name: `${firstName.current.value}`, 
+                          username: `${userName.current.value}`,
+                          instrumentId: parseInt(instrumentId.current.value)
                         })
                     })
                         .then(res => res.json())
                         .then(createdUser => {
-                            if (createdUser.hasOwnProperty("id")) {
-                                sessionStorage.setItem("sequence_user", createdUser.id)
-                                history.push("/")
-                            }
+                          if (createdUser.hasOwnProperty("id")) {
+                            sessionStorage.setItem("sequence_user", createdUser.id)
+                            setIsLoggedIn(sessionStorage.getItem("sequence_user"))
+                            history.push("/")
+                          }
                         })
                 }
                 else {
