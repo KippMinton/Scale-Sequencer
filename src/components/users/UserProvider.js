@@ -5,8 +5,10 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
 
+  const currentUser = window.sessionStorage.getItem("sequence_user")
   const [users, setUsers] = useState([])
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(currentUser)
+  const [userObj, setUserObj] = useState({})
 
   const getUsers = () => {
     return fetch("http://localhost:8088/users")
@@ -16,7 +18,7 @@ export const UserProvider = (props) => {
 
   const getUserById = (id) => {
     return fetch(`http://localhost:8088/users/${id}`)
-      .then(res => res.json()) // note we don't set anything on state here. Why?
+      .then(res => res.json())
   }
 
   const addUser = userObj => {
@@ -41,14 +43,9 @@ export const UserProvider = (props) => {
       .then(getUsers)
   }
 
-  const setLoggedInState = (bool) => {
-    setIsLoggedIn(bool)
-  }
-
-
   return (
     <UserContext.Provider value={{
-      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setLoggedInState
+      users, getUsers, getUserById, addUser, updateUser, isLoggedIn, setIsLoggedIn, userObj, setUserObj
     }}>
       {props.children}
     </UserContext.Provider>

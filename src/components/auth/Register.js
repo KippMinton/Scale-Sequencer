@@ -1,14 +1,26 @@
-import React, { useRef } from "react"
+import React, { useRef, useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import "./Login.css"
+import { InstrumentContext } from "../instruments/InstrumentProvider"
+import { UserContext } from "../users/UserProvider"
 
 export const Register = (props) => {
     const firstName = useRef()
     const userName = useRef()
     const email = useRef()
+    const instrumentId = useRef()
     const verifyPassword = useRef()
     const conflictDialog = useRef()
     const history = useHistory()
+
+    const { instruments, getInstruments } = useContext(InstrumentContext)
+
+    const { setIsLoggedIn } = useContext(UserContext)
+
+    useEffect(() => {
+      getInstruments()
+    }, [])
+
 
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/users?email=${email.current.value}`)
@@ -29,17 +41,19 @@ export const Register = (props) => {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            email: email.current.value,
-                            name: `${firstName.current.value}`, 
-                            username: `${userName.current.value}`
+                          email: email.current.value,
+                          name: `${firstName.current.value}`, 
+                          username: `${userName.current.value}`,
+                          instrumentId: parseInt(instrumentId.current.value)
                         })
                     })
                         .then(res => res.json())
                         .then(createdUser => {
-                            if (createdUser.hasOwnProperty("id")) {
-                                sessionStorage.setItem("sequence_user", createdUser.id)
-                                history.push("/")
-                            }
+                          if (createdUser.hasOwnProperty("id")) {
+                            sessionStorage.setItem("sequence_user", createdUser.id)
+                            setIsLoggedIn(sessionStorage.getItem("sequence_user"))
+                            history.push("/")
+                          }
                         })
                 }
                 else {
@@ -72,7 +86,23 @@ export const Register = (props) => {
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Sign in </button>
+            <label htmlFor="instrument">Choose an instrument: </label>
+            <select
+              ref={instrumentId}
+              name="instrument"
+              id="instrumentId"
+              className="form-control"
+            >
+              <option value='0'>Select an instrument</option>
+              {instruments.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </select>
+                </fieldset>
+                <fieldset>
+                    <button type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

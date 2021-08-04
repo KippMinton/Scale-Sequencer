@@ -7,8 +7,8 @@ export const ScaleSequencer = () => {
   return (
     <>
     <UserProvider>
-      <NavBar />
-      <ApplicationViews />
+        <NavBar />
+        <ApplicationViews />
     </UserProvider>
     </>
   );

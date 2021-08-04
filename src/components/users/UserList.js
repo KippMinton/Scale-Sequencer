@@ -10,6 +10,7 @@ export const UserList = () => {
   // Initialization effect hook -> Go get User data
   useEffect(() => {
     getUsers()
+    .then(console.log(users))
   }, [])
 
   return (

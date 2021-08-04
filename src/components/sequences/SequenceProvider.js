@@ -14,8 +14,8 @@ export const SequenceProvider = (props) => {
   };
 
   const getSequenceById = (id) => {
-    return fetch(`http://localhost:8088/sequences/${id}?_expand=location&_expand=customer`)
-      .then(res => res.json()) // note we don't set anything on state here. Why?
+    return fetch(`http://localhost:8088/sequences/${id}`)
+      .then(res => res.json())
   }
 
   const addSequence = sequenceObj => {
@@ -26,10 +26,9 @@ export const SequenceProvider = (props) => {
       },
       body: JSON.stringify(sequenceObj)
     })
-      .then(getSequences)
   }
 
-  const updateSequence = sequence => {
+  const editSequence = sequence => {
     return fetch(`http://localhost:8088/sequences/${sequence.id}`, {
       method: "PUT",
       headers: {
@@ -40,14 +39,24 @@ export const SequenceProvider = (props) => {
       .then(getSequences)
   }
 
+  const getUserSequences = (userId) => {
+    return fetch(`http://localhost:8088/user/${userId}/sequences`)
+    .then(res => res.json())
+    .then(setSequences)
+  }
+
+  const deleteSequence = (sequenceId) => {
+    return fetch(`http://localhost:8088/sequences/${sequenceId}`, {
+      method: "DELETE"
+    })
+      // .then(getUserSequences)
+  }
 
   return (
     <SequenceContext.Provider value={{
-      sequences, getSequences, getSequenceById, addSequence, updateSequence
+      sequences, getSequences, getSequenceById, addSequence, editSequence, getUserSequences, deleteSequence
     }}>
       {props.children}
     </SequenceContext.Provider>
   )
-};
-
-
+}
