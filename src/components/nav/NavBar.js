@@ -17,16 +17,21 @@ export const NavBar = (props) => {
 
   return (
     <ul className="navbar">
+
       <li className="navbar__item active">
         <Link className="navbar__link" to="/">Sequencer</Link>
       </li>
       
+      <li className="navbar__item active">
+        <Link className="navbar__link" to="/about">About</Link>
+      </li>
+
       {!isLoggedIn ?
       <>
         <li className="navbar__item"><div></div></li>
         <li className="navbar__item"><div></div></li>
         <li className="navbar__item">
-          <Link className="navbar__link" to="/login">sign in</Link>
+          <Link className="navbar__link" to="/login">Sign In</Link>
         </li> 
       </>: 
       <>
@@ -40,6 +45,7 @@ export const NavBar = (props) => {
           <Link className="navbar__link" onClick={Logout} to="/">Sign Out</Link>
         </li>
       </>}
+
     </ul>
   )
 }

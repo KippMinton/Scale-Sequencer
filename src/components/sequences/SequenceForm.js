@@ -1,6 +1,3 @@
-//Kipp Minton
-//Component for rendering task form; currently only creates and saves new tasks
-
 import React, { useContext, useState, useEffect } from "react"
 import { SequenceContext } from "./SequenceProvider"
 import "./Sequence.css"

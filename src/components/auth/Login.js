@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react"
+import React, { useState, useContext } from "react"
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../users/UserProvider"
 import "./Login.css"
@@ -31,7 +31,6 @@ export const Login = () => {
     existingUserCheck()
       .then(exists => {
         if (exists) {
-          // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
           sessionStorage.setItem("sequence_user", exists.id)
           setIsLoggedIn(sessionStorage.getItem("sequence_user"))
           history.push("/")

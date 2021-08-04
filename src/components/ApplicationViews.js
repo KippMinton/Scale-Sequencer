@@ -9,6 +9,7 @@ import { Register } from './auth/Register'
 import { SequenceProvider } from './sequences/SequenceProvider'
 import { SequenceForm } from './sequences/SequenceForm'
 import { InstrumentProvider } from './instruments/InstrumentProvider'
+import { About } from './about/About'
 
 export const ApplicationViews = () => {
   return (
@@ -37,6 +38,9 @@ export const ApplicationViews = () => {
         </SequenceProvider>
       </InstrumentProvider>
 
+      <Route path="/about">
+        <About />
+      </Route>
       <Route path="/login">
         <Login />
       </Route>
