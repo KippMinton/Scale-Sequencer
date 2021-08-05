@@ -2,16 +2,20 @@ import React, { useState, useContext, useEffect }from 'react'
 import { Score } from './score/Score'
 import { UserContext } from "./users/UserProvider"
 import { SequenceContext } from "./sequences/SequenceProvider"
+import { InstrumentContext } from "./instruments/InstrumentProvider"
 
 export const Home = (props) => {
   const { isLoggedIn, getUserById } = useContext(UserContext)
   const  [userObj, setUserObj] = useState({})
   const userId = parseInt(isLoggedIn)
 
+  const { getInstruments } = useContext(InstrumentContext)
+
   useEffect(() => {
     if(isLoggedIn){
     getUserById(userId)
-    .then(setUserObj)}
+    .then(setUserObj)
+    .then(getInstruments)}
   },[])
 
   const { addSequence } = useContext(SequenceContext)
