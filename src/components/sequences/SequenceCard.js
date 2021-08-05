@@ -5,23 +5,23 @@ import "./Sequence.css"
 import { UserContext } from "../users/UserProvider"
 import { InstrumentContext } from "../instruments/InstrumentProvider"
 
-export const SequenceCard = ({ sequence }) =>{ 
+export const SequenceCard = ({ sequence, instruments }) =>{ 
 
   const { isLoggedIn } = useContext(UserContext)
   const { deleteSequence, getUserSequences } = useContext(SequenceContext)
 
-  const { getInstruments, instruments } = useContext(InstrumentContext)
-  // const [instruments, setInstruments] = useState()
+  // const { getInstruments, instruments } = useContext(InstrumentContext)
 
+  console.log(instruments)
   const history = useHistory()
 
   const userId = parseInt(isLoggedIn)
 
   const iId = sequence.instrumentId
 
-  useEffect(() => {
-    getInstruments()
-  }, [])
+  // useEffect(() => {
+  //   getInstruments()
+  // }, [])
 
   const handleDeleteSequence = (event) => {
     event.preventDefault()
@@ -32,6 +32,7 @@ export const SequenceCard = ({ sequence }) =>{
   }
   
   return (
+
     <section className="sequence">
       <h3 className="sequence__header">
           {sequence.num1}, {sequence.num2}, {sequence.num3}

@@ -32,6 +32,10 @@ export const UserDetail = () => {
       .then(console.log("sequences set to " + sequences))
   }, [])
 
+  // useEffect(() => {
+  //   getInstruments()
+  // })
+
   return (
     <>
       <section className="user">

@@ -30,9 +30,9 @@ export const UserProfile = () => {
     .then(console.log("sequences set to " + sequences))
   },[])
 
-  useEffect(() => {
-    getInstruments()
-  },[])
+  // useEffect(() => {
+  //   getInstruments()
+  // },[])
 
   return (
     <>
@@ -44,9 +44,11 @@ export const UserProfile = () => {
       <section className="user__sequences">
         <h3>Sequences</h3>
         <div className="user__sequences">
-          {
+          { 
             sequences.map(sequence => {
-              return <SequenceCard key={sequence.id} sequence={sequence} />
+              if (instruments){
+                return <SequenceCard key={sequence.id} sequence={sequence} instruments={instruments} />
+              }
             })
           }
         </div>
