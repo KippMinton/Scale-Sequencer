@@ -16,38 +16,37 @@ export const NavBar = (props) => {
   }
 
   return (
-    <ul className="navbar">
+    <nav>
+      <ul className="navbar">
 
-      <li className="navbar__item active">
-        <Link className="navbar__link" to="/">Sequencer</Link>
-      </li>
-      
-      <li className="navbar__item active">
-        <Link className="navbar__link" to="/about">About</Link>
-      </li>
+        <li className="navbar__item active">
+          <Link className="navbar__link" to="/">Sequencer</Link>
+        </li>
+        
+        <li className="navbar__item active">
+          <Link className="navbar__link" to="/about">About</Link>
+        </li>
 
-      {!isLoggedIn ?
-      <>
-        <li className="navbar__item"><div></div></li>
-        <li className="navbar__item"><div></div></li>
-        <li className="navbar__item">
-          <Link className="navbar__link" to="/login">Sign In</Link>
-        </li> 
-      </>: 
-      <>
-        <li className="navbar__item">
-          <Link className="navbar__link" to="/profile">Profile</Link>
-        </li>
-        <li className="navbar__item">
-          <Link className="navbar__link" to="/users">Users</Link>
-        </li>
-        <li className="navbar__item">
-          <Link className="navbar__link" onClick={Logout} to="/">Sign Out</Link>
-        </li>
-      </>}
-
-    </ul>
+        {!isLoggedIn ?
+        <>
+          <li className="navbar__item"><div></div></li>
+          <li className="navbar__item"><div></div></li>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/login">Sign In</Link>
+          </li> 
+        </>: 
+        <>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/profile">Profile</Link>
+          </li>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/users">Users</Link>
+          </li>
+          <li className="navbar__item">
+            <Link className="navbar__link" onClick={Logout} to="/">Sign Out</Link>
+          </li>
+        </>}
+      </ul>
+    </nav>
   )
 }
-
-//

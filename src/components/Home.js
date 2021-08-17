@@ -3,6 +3,7 @@ import { Score } from './score/Score'
 import { UserContext } from "./users/UserProvider"
 import { SequenceContext } from "./sequences/SequenceProvider"
 import { InstrumentContext } from "./instruments/InstrumentProvider"
+import "./Home.css"
 
 export const Home = (props) => {
   const { isLoggedIn, getUserById } = useContext(UserContext)
@@ -114,17 +115,19 @@ export const Home = (props) => {
   return (
     <>
       <section>
-        <h1 className="title">Create a Seqence</h1>
-        <div className="scores_divs">
-        <Score
-          staves={notes}
-        />
-        <Score
-          staves={notes2}
-        />
+        <div className="title__div">
+          <h1 className="title">Create a Sequence</h1>
+        </div>
+        <div className="scores_div">
+          <Score
+            staves={notes}
+          />
+          <Score
+            staves={notes2}
+          />
         </div>
         <form className="numbers">
-          <label htmlFor="number1">select scale degrees: </label>
+          <label htmlFor="number1" className="num__label">select scale degrees: </label>
           <input type="number" id="num1" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
           <input type="number" id="num2" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
           <input type="number" id="num3" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
@@ -141,7 +144,6 @@ export const Home = (props) => {
           }
         </div>
       </section>
-      
     </>
   );
 }

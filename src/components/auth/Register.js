@@ -102,7 +102,7 @@ export const Register = (props) => {
             </select>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn" type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

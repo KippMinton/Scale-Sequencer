@@ -15,7 +15,7 @@ export const UserDetail = () => {
 
   const { getUserSequences, sequences } = useContext(SequenceContext)
 
-  const { instruments } = useContext(InstrumentContext)
+  const { instruments, getInstruments } = useContext(InstrumentContext)
 
   
 
@@ -32,42 +32,39 @@ export const UserDetail = () => {
       .then(console.log("sequences set to " + sequences))
   }, [])
 
-  // useEffect(() => {
-  //   getInstruments()
-  // })
+  useEffect(() => {
+    getInstruments()
+  })
 
   return (
     <>
-      <section className="user">
+      <div className="user__detail">
 
         <h3 className="user__name">{user.username}</h3>
-        <div className="name">{user.name}</div>
+        <div className="name">Name: {user.name}</div>
         <div className="user__email">Email: {user.email}</div>
 
-      </section>
-      <section className="user__sequences">
-        <h3>Sequences</h3>
-        <div className="user__sequences">
-          {
-            sequences.map(sequence => {
-              const iId = sequence.instrumentId
-              return (
-                <>
-                  <section className="sequence" key={sequence.id}>
-                    <h3 className="sequence__header">
-                    {sequence.num1}, {sequence.num2}, {sequence.num3}
-                    </h3>
-                    <div className="sequence__date">{sequence.saveDate}</div>
-                    <div className="sequence__instrument">Instrument: {instruments[iId].name}</div>
-                    <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
-                    <div className="practice__notes">Practice Notes: {sequence.practiceNotes}</div>
-                  </section>
-                </>
-              )
-            })
-          }
-        </div>
-      </section>
+      </div>
+      <div className="user__sequences">
+        {
+          sequences.map(sequence => {
+            const iId = sequence.instrumentId
+            return (
+              <>
+                <div className="user__sequence" key={sequence.id}>
+                  <h3 className="sequence__header">
+                  {sequence.num1}, {sequence.num2}, {sequence.num3}
+                  </h3>
+                  <div className="sequence__date">{sequence.saveDate}</div>
+                  <div className="sequence__instrument">Instrument: {instruments[iId]?.name}</div>
+                  <div className="sequence__tempo">Max Tempo: {sequence.tempo}bpm</div>
+                  <div className="practice__notes">Practice Notes: {sequence.practiceNotes}</div>
+                </div>
+              </>
+            )
+          })
+        }
+      </div>
     </>
   )
 }

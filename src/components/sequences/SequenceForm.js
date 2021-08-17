@@ -77,45 +77,48 @@ export const SequenceForm = () => {
 
   return (
     <>
-      <form className="sequenceForm">
-        <h2 className="sequence__header">{n1}, {n2}, {n3}</h2>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="num1">select scale degrees: </label>
-            <input type="number" id="num1" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
-            <input type="number" id="num2" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
-            <input type="number" id="num3" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="instrument">Choose an instrument: </label>
-            <select
-              name="instrument"
-              id="instrumentId"
-              className="form-control"
-              onChange={handleControlledInputChange}
-            >
-              <option value='0'>Select an instrument</option>
-              {instruments.map((i) => (
-                <option key={i.id} value={i.id}>
-                  {i.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="form-group">
-            <input type="number" id="tempo" className ="number" min="40" max="280" onChange={handleControlledInputChange}></input>
-          </div>
-          <div className="form-group">
-            <label htmlFor="practiceNotes"></label>
-            <input type="text" id="practiceNotes" className="form-control" placeholder="Practice Notes..." value={seq.practiceNotes} onChange={handleControlledInputChange} />
-          </div>
-        </fieldset>
-        <button className="btn" onClick={handleSaveSequence}>
-          Save Edits
-        </button>
-      </form>
+      <section className="sequence__form">
+        <form>
+          <h2 className="sequence__header">{n1}, {n2}, {n3}</h2>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="num1">select scale degrees: </label>
+              <input type="number" id="num1" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
+              <input type="number" id="num2" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
+              <input type="number" id="num3" className="number" min="1" max="8" onChange={handleControlledInputChange}></input>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="instrument">Choose an instrument: </label>
+              <select
+                name="instrument"
+                id="instrumentId"
+                className="form-control"
+                onChange={handleControlledInputChange}
+              >
+                <option value='0'>Select an instrument</option>
+                {instruments.map((i) => (
+                  <option key={i.id} value={i.id}>
+                    {i.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="tempo">Tempo:</label>
+              <input type="number" id="tempo" className ="number" min="40" max="280" onChange={handleControlledInputChange}></input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="practiceNotes">Practice Notes:</label>
+              <input type="text" id="practiceNotes" className="form-control" placeholder="Practice Notes..." value={seq.practiceNotes} onChange={handleControlledInputChange} />
+            </div>
+          </fieldset>
+          <button className="btn" onClick={handleSaveSequence}>
+            Save Edits
+          </button>
+        </form>
+      </section>
     </>
   )
 }
