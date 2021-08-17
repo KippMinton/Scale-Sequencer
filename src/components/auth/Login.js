@@ -61,14 +61,14 @@ export const Login = () => {
               onChange={handleInputChange} />
           </fieldset>
           <fieldset>
-            <button type="submit">
+            <button className="btn"type="submit">
               Sign in
             </button>
           </fieldset>
         </form>
       </section>
       <section className="link--register">
-        <Link to="/register">Register for an account</Link>
+        <Link className="link--reg" to="/register">Register for an account</Link>
       </section>
     </main>
   )

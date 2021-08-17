@@ -1,13 +1,54 @@
 
-.sequences {
+.user__sequences {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+.sequence__header {
+  color: orange;
+  text-shadow: 1px 1px 2px #000000;
+  margin-bottom: 0.5em;
+}
+
 .sequence {
-    flex-basis: 28%;
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid goldenrod;
+  background-color: white;
+  flex-basis: 30%;
+  padding: 1em 1em 0 1em;
+  margin: 1em;
+  color: #4eb5f1;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.2em;
+  border: 2px solid #4eb5f1;
+  border-radius: 1em;
+  box-shadow: 3px 3px 5px rgba(53, 80, 201, 0.705);
+}
+
+.user__sequence {
+  background-color: white;
+  flex-basis: 30%;
+  padding: 1em;
+  margin: 1em;
+  color: #4eb5f1;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.2em;
+  border: 2px solid #4eb5f1;
+  border-radius: 1em;
+  box-shadow: 3px 3px 5px rgba(53, 80, 201, 0.705);
+}
+
+.sequence__form {
+  background-color: white;
+  flex-basis: 30%;
+  padding: 1em;
+  margin: 1em;
+  color: #4eb5f1;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.2em;
+  border: 2px solid #4eb5f1;
+  border-radius: 1em;
+  box-shadow: 3px 3px 5px rgba(53, 80, 201, 0.705);
 }
