@@ -6,12 +6,12 @@ export const About = () => {
   return (
     <>
       <div className="title__div">
-        <h1>How to Use Scale Sequence Generator</h1>
+        <h1>How to Use Scale Sequencer</h1>
       </div>
       <section className="lesson">
         <div className="lesson__body">
           <p>
-            Scale Sequence Generator is a music education tool that assists musicians of any skill level in developing their scale knowledge by generating written notation and providing a cataloging system to track progress. If you are unfamiliar with the concept of sequences, read the following article to learn how they can be utilized in your musical progress.
+            Scale Sequencer is a music education tool that assists musicians of any skill level in developing their scale knowledge by generating written notation and providing a cataloging system to track progress. If you are unfamiliar with the concept of sequences, read the following article to learn how they can be utilized in your musical progress.
           </p>
           <br></br>
           <p>
